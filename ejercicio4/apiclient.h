@@ -7,6 +7,7 @@
 #include <QNetworkRequest>
 #include <QByteArray>
 #include <QString>
+#include <QList>
 
 class ApiClient : public QObject {
     Q_OBJECT
@@ -27,6 +28,7 @@ public:
     void editarTarjeta(int id, const QString &titulo, const QString &descripcion);
     void eliminarTarjeta(int id);
     void moverTarjeta(int tarjetaId, int columnaDestinoId);
+    void reordenarTarjetas(int columnaId, const QList<int> &orden);
 
 signals:
     void tableroRecibido(const QByteArray &datos);
@@ -40,7 +42,7 @@ private slots:
 private:
     QNetworkAccessManager *managerGet;
     QNetworkAccessManager *managerMut;
-    QString   baseUrl;
+    QString    baseUrl;
     QByteArray credenciales;
 
     QNetworkRequest crearRequest(const QString &path);

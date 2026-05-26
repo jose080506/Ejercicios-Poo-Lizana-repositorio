@@ -14,7 +14,7 @@
 #include <QDebug>
 
 // ─── Datos reales del VPS ─────────────────────────────────────────────────────
-static const QString URL_BASE = "http://173.212.209.61";
+static const QString URL_BASE = "http://173.212.209.61:8000";   // puerto 8000!
 static const QString USUARIO  = "admin";
 static const QString CLAVE    = "admin123";
 // ─────────────────────────────────────────────────────────────────────────────
@@ -25,7 +25,7 @@ KanbanWidget::KanbanWidget(QWidget *parent) : QWidget(parent) {
     // ── Header ────────────────────────────────────────────────────────────────
     QWidget *header = new QWidget;
     header->setFixedHeight(50);
-    header->setStyleSheet("background-color: #0079bf;");
+    header->setStyleSheet("background-color: #000000;");
 
     QHBoxLayout *hHeader = new QHBoxLayout(header);
     hHeader->setContentsMargins(16, 0, 16, 0);
@@ -33,7 +33,7 @@ KanbanWidget::KanbanWidget(QWidget *parent) : QWidget(parent) {
     QLabel *lblTitulo = new QLabel("📋  Tablero Kanban — POO 2026");
     lblTitulo->setStyleSheet("color: white; font-size: 16px; font-weight: bold;");
 
-    QLabel *lblVps = new QLabel("VPS: 173.212.209.61");
+    QLabel *lblVps = new QLabel("VPS: 173.212.209.61:8000");
     lblVps->setStyleSheet("color: rgba(255,255,255,0.7); font-size: 11px;");
 
     QPushButton *btnNuevaCol = new QPushButton("+ Nueva columna");
@@ -124,14 +124,15 @@ void KanbanWidget::slot_tableroRecibido(const QByteArray &datos) {
         ColumnaWidget *col = new ColumnaWidget(colId, colNombre);
 
         QJsonArray tarjetas = colObj["tarjetas"].toArray();
+        QList<int> ordenTarjetas;
         for (const QJsonValue &tv : tarjetas) {
             QJsonObject t = tv.toObject();
-            col->agregarTarjeta(
-                t["id"].toInt(),
-                t["titulo"].toString(),
-                t["descripcion"].toString()
-            );
+            int tid = t["id"].toInt();
+            col->agregarTarjeta(tid, t["titulo"].toString(),
+                                t["descripcion"].toString());
+            ordenTarjetas.append(tid);
         }
+        col->setOrdenTarjetas(ordenTarjetas);
 
         conectarColumna(col);
         layoutColumnas->addWidget(col);
@@ -146,7 +147,7 @@ void KanbanWidget::slot_operacionCompletada() {
 void KanbanWidget::slot_errorOcurrido(const QString &mensaje) {
     qDebug() << "[Kanban] Error:" << mensaje;
     QMessageBox::warning(this, "Error de red",
-        "No se pudo conectar al VPS (173.212.209.61).\n\n" + mensaje);
+        "No se pudo conectar al VPS (173.212.209.61:8000).\n\n" + mensaje);
 }
 
 // ── Columnas ──────────────────────────────────────────────────────────────────
@@ -217,6 +218,10 @@ void KanbanWidget::slot_moverTarjetaDerecha(int tarjetaId, int columnaActualId) 
     apiClient->moverTarjeta(tarjetaId, destino);
 }
 
+void KanbanWidget::slot_reordenarTarjetas(int columnaId, QList<int> orden) {
+    apiClient->reordenarTarjetas(columnaId, orden);
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 void KanbanWidget::limpiarColumnas() {
@@ -240,6 +245,8 @@ void KanbanWidget::conectarColumna(ColumnaWidget *col) {
             this, SLOT(slot_moverTarjetaIzquierda(int, int)));
     connect(col, SIGNAL(signal_moverTarjetaDerecha(int, int)),
             this, SLOT(slot_moverTarjetaDerecha(int, int)));
+    connect(col, SIGNAL(signal_reordenar(int, QList<int>)),
+            this, SLOT(slot_reordenarTarjetas(int, QList<int>)));
 }
 
 int KanbanWidget::columnaVecina(int columnaActualId, int delta) {

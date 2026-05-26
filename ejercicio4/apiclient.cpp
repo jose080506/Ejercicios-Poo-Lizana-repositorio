@@ -1,6 +1,7 @@
 #include "apiclient.h"
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QDebug>
 
 ApiClient::ApiClient(const QString &baseUrl, const QString &usuario,
@@ -80,6 +81,16 @@ void ApiClient::moverTarjeta(int tarjetaId, int columnaDestinoId) {
     obj["columna_destino_id"] = columnaDestinoId;
     managerMut->put(
         crearRequestJson(QString("/kanban/tarjetas/%1/mover").arg(tarjetaId)),
+        QJsonDocument(obj).toJson());
+}
+
+void ApiClient::reordenarTarjetas(int columnaId, const QList<int> &orden) {
+    QJsonArray arr;
+    for (int id : orden) arr.append(id);
+    QJsonObject obj;
+    obj["orden"] = arr;
+    managerMut->put(
+        crearRequestJson(QString("/kanban/columnas/%1/reordenar").arg(columnaId)),
         QJsonDocument(obj).toJson());
 }
 

@@ -28,6 +28,7 @@ private slots:
     void slot_eliminarTarjeta(int tarjetaId);
     void slot_moverTarjetaIzquierda(int tarjetaId, int columnaActualId);
     void slot_moverTarjetaDerecha(int tarjetaId, int columnaActualId);
+    void slot_reordenarTarjetas(int columnaId, QList<int> orden);
 
 private:
     ApiClient   *apiClient;

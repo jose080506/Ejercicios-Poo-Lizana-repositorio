@@ -11,10 +11,7 @@ ColumnaWidget::ColumnaWidget(int id, const QString &nombre, QWidget *parent)
     setMinimumWidth(240);
     setMaximumWidth(270);
     setStyleSheet(
-        "ColumnaWidget {"
-        "  background-color: #ebecf0;"
-        "  border-radius: 8px;"
-        "}"
+        "ColumnaWidget { background-color: #ebecf0; border-radius: 8px; }"
     );
 
     // ── Encabezado ────────────────────────────────────────────────────────────
@@ -25,7 +22,6 @@ ColumnaWidget::ColumnaWidget(int id, const QString &nombre, QWidget *parent)
 
     QPushButton *btnEliminarCol = new QPushButton("✕");
     btnEliminarCol->setFixedSize(24, 24);
-    btnEliminarCol->setToolTip("Eliminar columna");
     btnEliminarCol->setStyleSheet(
         "color: #e53935; background: transparent; border: none;"
     );
@@ -52,11 +48,8 @@ ColumnaWidget::ColumnaWidget(int id, const QString &nombre, QWidget *parent)
     // ── Botón nueva tarjeta ───────────────────────────────────────────────────
     QPushButton *btnNueva = new QPushButton("+ Agregar tarjeta");
     btnNueva->setStyleSheet(
-        "QPushButton {"
-        "  background-color: #0079bf; color: white;"
-        "  border-radius: 4px; padding: 6px;"
-        "  font-size: 12px;"
-        "}"
+        "QPushButton { background-color: #0079bf; color: white;"
+        "  border-radius: 4px; padding: 6px; font-size: 12px; }"
         "QPushButton:hover { background-color: #026aa7; }"
     );
 
@@ -84,6 +77,10 @@ void ColumnaWidget::agregarTarjeta(int tarjetaId, const QString &titulo,
             this,    SLOT(slot_moverIzquierda(int)));
     connect(tarjeta, SIGNAL(signal_moverDerecha(int)),
             this,    SLOT(slot_moverDerecha(int)));
+    connect(tarjeta, SIGNAL(signal_subir(int)),
+            this,    SLOT(slot_subirTarjeta(int)));
+    connect(tarjeta, SIGNAL(signal_bajar(int)),
+            this,    SLOT(slot_bajarTarjeta(int)));
 }
 
 void ColumnaWidget::limpiarTarjetas() {
@@ -94,8 +91,10 @@ void ColumnaWidget::limpiarTarjetas() {
     }
 }
 
-void ColumnaWidget::slot_nuevaTarjeta()          { emit signal_nuevaTarjeta(id); }
-void ColumnaWidget::slot_eliminarColumna()        { emit signal_eliminarColumna(id); }
+// ── Slots privados ────────────────────────────────────────────────────────────
+
+void ColumnaWidget::slot_nuevaTarjeta()   { emit signal_nuevaTarjeta(id); }
+void ColumnaWidget::slot_eliminarColumna() { emit signal_eliminarColumna(id); }
 
 void ColumnaWidget::slot_editarTarjeta(int tarjetaId, const QString &titulo,
                                         const QString &descripcion) {
@@ -112,4 +111,18 @@ void ColumnaWidget::slot_moverIzquierda(int tarjetaId) {
 
 void ColumnaWidget::slot_moverDerecha(int tarjetaId) {
     emit signal_moverTarjetaDerecha(tarjetaId, id);
+}
+
+void ColumnaWidget::slot_subirTarjeta(int tarjetaId) {
+    int idx = ordenTarjetas.indexOf(tarjetaId);
+    if (idx <= 0) return;
+    ordenTarjetas.swapItemsAt(idx, idx - 1);
+    emit signal_reordenar(id, ordenTarjetas);
+}
+
+void ColumnaWidget::slot_bajarTarjeta(int tarjetaId) {
+    int idx = ordenTarjetas.indexOf(tarjetaId);
+    if (idx < 0 || idx >= ordenTarjetas.size() - 1) return;
+    ordenTarjetas.swapItemsAt(idx, idx + 1);
+    emit signal_reordenar(id, ordenTarjetas);
 }

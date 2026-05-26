@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QString>
+#include <QList>
 #include "tarjetawidget.h"
 
 class ColumnaWidget : public QWidget {
@@ -18,6 +19,7 @@ public:
     void agregarTarjeta(int tarjetaId, const QString &titulo,
                         const QString &descripcion);
     void limpiarTarjetas();
+    void setOrdenTarjetas(const QList<int> &orden) { ordenTarjetas = orden; }
 
 signals:
     void signal_nuevaTarjeta(int columnaId);
@@ -27,6 +29,7 @@ signals:
     void signal_eliminarTarjeta(int tarjetaId);
     void signal_moverTarjetaIzquierda(int tarjetaId, int columnaId);
     void signal_moverTarjetaDerecha(int tarjetaId, int columnaId);
+    void signal_reordenar(int columnaId, QList<int> orden);
 
 private slots:
     void slot_nuevaTarjeta();
@@ -36,10 +39,13 @@ private slots:
     void slot_eliminarTarjeta(int id);
     void slot_moverIzquierda(int tarjetaId);
     void slot_moverDerecha(int tarjetaId);
+    void slot_subirTarjeta(int tarjetaId);
+    void slot_bajarTarjeta(int tarjetaId);
 
 private:
     int      id;
     QString  nombre;
+    QList<int> ordenTarjetas;
     QWidget     *contenedorTarjetas;
     QVBoxLayout *layoutTarjetas;
 };
