@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Login</class>
+ <widget class="QWidget" name="Login">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>360</width><height>260</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>Login</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
+    <widget class="QLabel" name="lTitulo">
+     <property name="text"><string>&lt;h2&gt;Iniciar sesión&lt;/h2&gt;</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="lUsuario">
+     <property name="text"><string>Usuario:</string></property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="leUsuario"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="lClaveTexto">
+     <property name="text"><string>Clave:</string></property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLineEdit" name="leClave">
+     <property name="echoMode"><enum>QLineEdit::Password</enum></property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QPushButton" name="pbIngresar">
+     <property name="text"><string>Ingresar</string></property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QLabel" name="lMensaje">
+     <property name="text"><string/></property>
+     <property name="styleSheet"><string notr="true">color: rgb(200, 30, 30);</string></property>
+     <property name="alignment"><set>Qt::AlignCenter</set></property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="lClima">
+     <property name="text"><string>Cargando clima...</string></property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="lHora">
+     <property name="text"><string>--:--:--</string></property>
+     <property name="alignment"><set>Qt::AlignRight|Qt::AlignVCenter</set></property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,63 @@
+[2026-06-03 12:20:45] Login: ventana inicializada
+[2026-06-03 12:20:45] Login: error de clima -> API key no configurada en config.ini
+[2026-06-03 12:20:45] Login: pantalla mostrada
+[2026-06-03 12:20:58] Login: acceso correcto
+[2026-06-03 12:20:58] Ventana: descargando fondo desde https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920
+[2026-06-03 12:20:58] Login: pantalla cerrada
+[2026-06-03 12:21:59] Login: ventana inicializada
+[2026-06-03 12:21:59] Login: error de clima -> API key no configurada en config.ini
+[2026-06-03 12:21:59] Login: pantalla mostrada
+[2026-06-03 12:23:30] Login: ventana inicializada
+[2026-06-03 12:23:30] Login: error de clima -> API key no configurada en config.ini
+[2026-06-03 12:23:30] Login: pantalla mostrada
+[2026-06-03 12:23:53] Login: ventana inicializada
+[2026-06-03 12:23:53] Login: error de clima -> API key no configurada en config.ini
+[2026-06-03 12:23:53] Login: pantalla mostrada
+[2026-06-03 12:23:56] Login: ventana inicializada
+[2026-06-03 12:23:56] Login: error de clima -> API key no configurada en config.ini
+[2026-06-03 12:23:56] Login: pantalla mostrada
+[2026-06-03 12:35:16] Login: ventana inicializada
+[2026-06-03 12:35:16] Login: pantalla mostrada
+[2026-06-03 12:35:18] Login: error de clima -> Error transferring https://api.openweathermap.org/data/2.5/weather?q&appid=539b5a3d89ee62c8fc15246c282bc8a8&units=metric&lang=es - server replied: Bad Request
+[2026-06-03 12:35:38] Login: ventana inicializada
+[2026-06-03 12:35:39] Login: pantalla mostrada
+[2026-06-03 12:35:39] Login: error de clima -> Error transferring https://api.openweathermap.org/data/2.5/weather?q&appid=539b5a3d89ee62c8fc15246c282bc8a8&units=metric&lang=es - server replied: Bad Request
+[2026-06-03 12:37:58] Login: ventana inicializada
+[2026-06-03 12:37:58] Login: pantalla mostrada
+[2026-06-03 12:37:58] Login: error de clima -> Error transferring https://api.openweathermap.org/data/2.5/weather?q&appid=539b5a3d89ee62c8fc15246c282bc8a8&units=metric&lang=es - server replied: Bad Request
+[2026-06-03 12:38:02] Login: ventana inicializada
+[2026-06-03 12:38:02] Login: pantalla mostrada
+[2026-06-03 12:38:02] Login: error de clima -> Error transferring https://api.openweathermap.org/data/2.5/weather?q&appid=539b5a3d89ee62c8fc15246c282bc8a8&units=metric&lang=es - server replied: Bad Request
+[2026-06-03 12:39:00] Login: ventana inicializada
+[2026-06-03 12:39:00] Login: pantalla mostrada
+[2026-06-03 12:39:01] Login: clima recibido OK
+[2026-06-03 12:39:11] Login: acceso correcto
+[2026-06-03 12:39:11] Ventana: descargando fondo desde https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920
+[2026-06-03 12:39:11] Login: pantalla cerrada
+[2026-06-03 12:40:11] Login: ventana inicializada
+[2026-06-03 12:40:11] Login: pantalla mostrada
+[2026-06-03 12:40:12] Login: clima recibido OK
+[2026-06-03 12:46:28] Login: ventana inicializada
+[2026-06-03 12:46:28] Login: pantalla mostrada
+[2026-06-03 12:46:29] Login: clima recibido OK
+[2026-06-03 12:46:38] Login: acceso correcto
+[2026-06-03 12:46:38] Ventana: descargando fondo desde https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920
+[2026-06-03 12:46:38] Login: pantalla cerrada
+[2026-06-03 12:46:39] Ventana: mostrada con fondo descargado
+[2026-06-03 12:48:08] Login: ventana inicializada
+[2026-06-03 12:48:08] Login: pantalla mostrada
+[2026-06-03 12:48:09] Login: clima recibido OK
+[2026-06-03 12:48:11] Login: acceso correcto
+[2026-06-03 12:48:11] Ventana: mostrada con fondo desde cache
+[2026-06-03 12:48:11] Login: pantalla cerrada
+[2026-06-03 12:48:50] Login: ventana inicializada
+[2026-06-03 12:48:50] Login: pantalla mostrada
+[2026-06-03 12:48:51] Login: clima recibido OK
+[2026-06-03 12:48:53] Login: intento fallido 1
+[2026-06-03 12:48:54] Login: intento fallido 2
+[2026-06-03 12:48:55] Login: intento fallido 3
+[2026-06-03 12:48:55] Login: bloqueo temporal activado
+[2026-06-03 12:49:10] Login: desbloqueado
+[2026-06-03 12:49:14] Login: acceso correcto
+[2026-06-03 12:49:14] Ventana: mostrada con fondo desde cache
+[2026-06-03 12:49:14] Login: pantalla cerrada
